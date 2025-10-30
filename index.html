@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hammad Khan - AI & Machine Learning Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --navy-blue: #001f3f;
+            --cyan: #00bfff;
+            --light-cyan: #4dd2ff;
+            --gray: #1a1a1a;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 31, 63, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-links a.active {
+            color: var(--cyan);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--cyan);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Home Page */
+        .hero {
+            padding: 6rem 0 4rem;
+            background: linear-gradient(135deg, var(--black) 0%, var(--navy-blue) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        .intro-text {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(0, 31, 63, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        .skills-section {
+            padding: 4rem 0;
+        }
+
+        .skills-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--cyan);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background-color: var(--navy-blue);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 191, 255, 0.2);
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Page */
+        .projects-section {
+            padding: 4rem 0;
+        }
+
+        .projects-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--cyan);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--navy-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 200px;
+            background-color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cyan);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 1rem;
+            color: var(--cyan);
+        }
+
+        .project-content p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background-color: rgba(0, 191, 255, 0.2);
+            color: var(--light-cyan);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            background-color: var(--cyan);
+            color: var(--black);
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .project-link:hover {
+            background-color: var(--light-cyan);
+        }
+
+        /* Contact Page */
+        .contact-section {
+            padding: 4rem 0;
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--cyan);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background-color: var(--navy-blue);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: var(--cyan);
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 191, 255, 0.2);
+            border-radius: 50%;
+            color: var(--cyan);
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--cyan);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background-color: var(--navy-blue);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--cyan);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--cyan);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--light-cyan);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy-blue);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--navy-blue);
+                width: 80%;
+                height: calc(100vh - 70px);
+                transition: right 0.3s;
+                padding-top: 2rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Hammad Khan</div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="projects">Projects</a></li>
+                <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <h1>Hammad Khan – AI & Machine Learning Engineer</h1>
+                <div class="intro-text">
+                    <p>I'm Hammad Khan, an AI & Machine Learning Engineer with a passion for transforming complex data into actionable insights and real-world solutions. With hands-on experience in developing end-to-end machine learning pipelines, deploying scalable models, and collaborating cross-functionally to drive innovation, I specialize in bridging the gap between cutting-edge algorithms and business impact.</p>
+                    <p>My background spans several AI/ML domains, including predictive modeling, computer vision, and natural language processing, leveraging tools such as Python, TensorFlow, PyTorch, SQL, and cloud platforms like AWS and Azure.</p>
+                    <p>I'm now looking to contribute my expertise in designing intelligent systems and delivering high-value outcomes.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="skills-section">
+            <div class="container">
+                <h2>Key Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fab fa-python"></i>
+                        <h3>Python</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-brain"></i>
+                        <h3>Machine Learning</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-robot"></i>
+                        <h3>Deep Learning</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Data Analysis</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-aws"></i>
+                        <h3>AWS</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-database"></i>
+                        <h3>SQL</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Neural Networks</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Azure</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section id="projects" class="page">
+        <div class="projects-section">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="projects-grid" id="projects-container">
+                    <!-- Projects will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <div class="contact-section">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p>I'm open to collaboration and new opportunities. Feel free to reach out if you'd like to work together or just say hello!</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>businesshammad875@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>03368147732</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <span>linkedin.com/in/saad-khan-72607834b</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <span>github.com/saadkhan021</span>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/saad-khan-72607834b" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/saadkhan021" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:businesshammad875@gmail.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hammad Khan – AI & ML Engineer</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-links');
+            
+            // Navigation click handler
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and pages
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to clicked link and corresponding page
+                    this.classList.add('active');
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Hamburger menu toggle
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Load projects data with correct GitHub links
+            const projectsData = [
+                {
+                    title: "CodeAlpha Credit Scoring Model",
+                    description: "A machine learning model to assess creditworthiness based on financial data and behavioral patterns.",
+                    tech: ["Python", "Scikit-learn", "Pandas", "NumPy"],
+                    icon: "fas fa-chart-pie",
+                    githubUrl: "https://github.com/saadkhan021/CodeAlpha_Credit-Scoring-Model"
+                },
+                {
+                    title: "Emotion Detection System",
+                    description: "Real-time facial emotion recognition using deep learning and computer vision techniques.",
+                    tech: ["Python", "TensorFlow", "OpenCV", "Keras"],
+                    icon: "fas fa-smile",
+                    githubUrl: "https://github.com/saadkhan021/Emotion-Detection-System"
+                },
+                {
+                    title: "AI Powered Resume Screening System",
+                    description: "Automated resume parsing and candidate ranking using NLP and machine learning algorithms.",
+                    tech: ["Python", "NLP", "Spacy", "Scikit-learn"],
+                    icon: "fas fa-file-alt",
+                    githubUrl: "https://github.com/saadkhan021/-AI-Powered-Resume-Screening-System"
+                },
+                {
+                    title: "Loan Approval Prediction System",
+                    description: "Predictive model to automate loan approval decisions based on applicant data.",
+                    tech: ["Python", "XGBoost", "Pandas", "Flask"],
+                    icon: "fas fa-hand-holding-usd",
+                    githubUrl: "https://github.com/saadkhan021/-Loan-Approval-Prediction-System"
+                },
+                {
+                    title: "Customer Segmentation for Retail Business",
+                    description: "Clustering algorithm to segment customers for targeted marketing strategies.",
+                    tech: ["Python", "K-means", "Matplotlib", "Seaborn"],
+                    icon: "fas fa-users",
+                    githubUrl: "https://github.com/saadkhan021/Customer-Segmentation-for-a-Retail-Business"
+                },
+                {
+                    title: "Student Performance Predictor",
+                    description: "Machine learning model to predict student performance based on academic and demographic factors.",
+                    tech: ["Python", "Random Forest", "Scikit-learn", "Pandas"],
+                    icon: "fas fa-graduation-cap",
+                    githubUrl: "https://github.com/saadkhan021/Student-Performance-Predictor"
+                },
+                {
+                    title: "OCR Images and Classification",
+                    description: "Optical character recognition system with document classification capabilities.",
+                    tech: ["Python", "Tesseract", "OpenCV", "TensorFlow"],
+                    icon: "fas fa-file-image",
+                    githubUrl: "https://github.com/saadkhan021/OCR-Images-and-classification"
+                },
+                {
+                    title: "Sales Trends Analysis of a Superstore",
+                    description: "Comprehensive analysis of sales data to identify trends and business insights.",
+                    tech: ["Python", "Pandas", "Matplotlib", "Seaborn"],
+                    icon: "fas fa-chart-line",
+                    githubUrl: "https://github.com/saadkhan021/Project-Title-Sales-Trends-Analysis-of-a-Superstore"
+                }
+            ];
+            
+            // Render projects
+            const projectsContainer = document.getElementById('projects-container');
+            
+            projectsData.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                
+                projectCard.innerHTML = `
+                    <div class="project-image">
+                        <i class="${project.icon}"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="tech-stack">
+                            ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                        <a href="${project.githubUrl}" target="_blank" class="project-link">View on GitHub</a>
+                    </div>
+                `;
+                
+                projectsContainer.appendChild(projectCard);
+            });
+            
+            // Contact form validation
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                if (name && email && message) {
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                } else {
+                    alert('Please fill in all fields.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
